@@ -6,6 +6,7 @@ TagManager:
   tags:
   - House
   - GridBlock
+  - Road
   layers:
   - Default
   - TransparentFX

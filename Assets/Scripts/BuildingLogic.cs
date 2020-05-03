@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 public class BuildingLogic : MonoBehaviour
 {
     CameraController cameraController;
-    [SerializeField] GameObject houseBasic;
+    [SerializeField] GameObject housePrefab;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,21 +22,19 @@ public class BuildingLogic : MonoBehaviour
     {
         if (Input.GetButton("Fire1"))
         {
-            if(EventSystem.current.IsPointerOverGameObject())
+            if (EventSystem.current.IsPointerOverGameObject())
             {
                 return;
             }
-            Vector2 tilePosition = cameraController.GetTilePosition();
-            if (GameObject.Find("House[" + tilePosition.x + "][" + tilePosition.y + "]") || GameObject.Find("Road[" + tilePosition.x + "][" + tilePosition.y + "]"))
+            RaycastHit2D hit = cameraController.MouseCast();
+            if (hit.transform.tag == "GridBlock" && hit.transform.gameObject.GetComponent<GridTile>().GetBuildingState())
             {
-
-            }
-            else
-            {
-                var house = Instantiate(houseBasic, tilePosition, Quaternion.identity) as GameObject;
+                Vector2 tilePosition = cameraController.MouseCast().transform.position;
+                var house = Instantiate(housePrefab, tilePosition, Quaternion.identity) as GameObject;
                 house.transform.parent = GameObject.Find("HouseTiles").transform;
                 house.gameObject.name = "House[" + tilePosition.x + "][" + tilePosition.y + "]";
                 house.gameObject.tag = "House";
+                hit.transform.gameObject.GetComponent<GridTile>().DisableBuilding();
             }
         }
         

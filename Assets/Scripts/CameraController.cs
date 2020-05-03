@@ -31,7 +31,6 @@ public class CameraController : MonoBehaviour
     {
         Move();
         GetTileName();
-        PaintTileOnHover();
         SetDebugInfoState();
         ToggleGrid();
 
@@ -89,27 +88,7 @@ public class CameraController : MonoBehaviour
             return new Vector2(0f, 0f);
         }
     }
-    public void PaintTileOnHover()
-    {
-        if(GetGridState())
-        {
-            RaycastHit2D hit = MouseCast();
-            if (hit && GetTileName().StartsWith("Block"))
-            {
-                hit.collider.gameObject.GetComponent<SpriteRenderer>().material.color = new Color32(0, 203, 255, 255);
-            }
-            if (hit && lastTileHover != null && hit.transform.name != null && lastTileHover != hit.transform.name)
-            {
-                GameObject.Find(lastTileHover).GetComponent<SpriteRenderer>().material.color = new Color32(255, 255, 255, 255);
-            }
-            if (hit)
-            {
-                lastTileHover = hit.transform.name;
-            }
-        }
-    }
-
-    private RaycastHit2D MouseCast()
+    public RaycastHit2D MouseCast()
     {
         Vector2 mouseRay = new Vector2(GetMousePosInWorld().x, GetMousePosInWorld().y);
         RaycastHit2D hit = Physics2D.Raycast(mouseRay, Vector2.zero, 5f);

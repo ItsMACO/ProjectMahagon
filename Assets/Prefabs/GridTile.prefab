@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 992057692294605074}
   - component: {fileID: 7678910293048668444}
   - component: {fileID: 8483714633226493184}
+  - component: {fileID: 6042804944107933778}
   m_Layer: 0
   m_Name: GridTile
   m_TagString: Untagged
@@ -108,3 +109,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.32, y: 0.32}
   m_EdgeRadius: 0
+--- !u!114 &6042804944107933778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3786104652754847900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01ef1fdf91b76244194414096e9710a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

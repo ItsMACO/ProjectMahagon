@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 217160988}
   - component: {fileID: 217160987}
   m_Layer: 5
-  m_Name: GridStateValue
+  m_Name: BuildModeValue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -418,7 +418,7 @@ GameObject:
   - component: {fileID: 527118391}
   - component: {fileID: 527118390}
   m_Layer: 5
-  m_Name: GridState
+  m_Name: BuildMode
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -462,7 +462,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Is Grid Enabled?
+  m_text: Build Mode
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -531,10 +531,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: -1.9756738, w: 0}
   m_textInfo:
     textComponent: {fileID: 527118390}
-    characterCount: 16
+    characterCount: 10
     spriteCount: 0
-    spaceCount: 2
-    wordCount: 3
+    spaceCount: 1
+    wordCount: 2
     linkCount: 0
     lineCount: 1
     pageCount: 1
@@ -688,6 +688,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 772819954}
+  - component: {fileID: 772819955}
   m_Layer: 0
   m_Name: GameLogic
   m_TagString: Untagged
@@ -710,9 +711,23 @@ Transform:
   - {fileID: 791729652}
   - {fileID: 997907588}
   - {fileID: 758960463}
+  - {fileID: 2086539789}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &772819955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 772819953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7529210bf2bbd44bb44aa22f420aafb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildMode: 1
 --- !u!1 &791729650
 GameObject:
   m_ObjectHideFlags: 0
@@ -2176,8 +2191,51 @@ MonoBehaviour:
   mousePosition: {fileID: 1392026431}
   numberOfHouses: {fileID: 1227080242}
   numberOfRoads: {fileID: 1569121086}
-  gridStateText: {fileID: 217160987}
+  buildModeText: {fileID: 217160987}
   framesPerSecondText: {fileID: 1615526333}
+--- !u!1 &2086539788
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2086539789}
+  - component: {fileID: 2086539790}
+  m_Layer: 0
+  m_Name: SelectTileLogic
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2086539789
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2086539788}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 772819954}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2086539790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2086539788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93e8dd25d231ca444a18f0202c4868db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2089568696
 GameObject:
   m_ObjectHideFlags: 0

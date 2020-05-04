@@ -7,6 +7,7 @@ public class GridTile : MonoBehaviour
 {
     new SpriteRenderer renderer;
     [SerializeField] bool buildingEnabled = true;
+    public bool isHoveredOn = false;
 
     //COLOURS
     Color32 lightblue = new Color32(0, 203, 255, 255);
@@ -26,10 +27,12 @@ public class GridTile : MonoBehaviour
     void OnMouseEnter()
     {
         PaintTile(lightblue);
+        isHoveredOn = true;
     }
     void OnMouseExit()
     {
         PaintTile(white);
+        isHoveredOn = false;
     }
     void PaintTile(Color32 tileColor)
     {

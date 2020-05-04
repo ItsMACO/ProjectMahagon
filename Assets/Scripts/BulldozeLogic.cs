@@ -6,11 +6,13 @@ using UnityEngine;
 public class BulldozeLogic : MonoBehaviour
 {
     CameraController cameraController;
+    GameLogic gameLogic;
 
     // Start is called before the first frame update
     void Start()
     {
         cameraController = FindObjectOfType<CameraController>();
+        gameLogic = FindObjectOfType<GameLogic>();
     }
 
     // Update is called once per frame
@@ -20,7 +22,7 @@ public class BulldozeLogic : MonoBehaviour
     }
     private void Bulldoze()
     {
-        if(Input.GetButtonDown("Fire2"))
+        if(Input.GetButton("Fire2") && gameLogic.IsBuildModeEnabled())
         {
             Vector2 tilePosition = cameraController.GetTilePosition();
             BulldozeLoop(cameraController.GetMousePosInWorld());

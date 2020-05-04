@@ -8,11 +8,12 @@ public class DebugInfo : MonoBehaviour
     [SerializeField] TextMeshProUGUI mousePosition;
     [SerializeField] TextMeshProUGUI numberOfHouses;
     [SerializeField] TextMeshProUGUI numberOfRoads;
-    [SerializeField] TextMeshProUGUI gridStateText;
+    [SerializeField] TextMeshProUGUI buildModeText;
     [SerializeField] TextMeshProUGUI framesPerSecondText;
 
     new Camera camera;
     CameraController cameraController;
+    GameLogic gameLogic;
     int fps;
     float refreshRate = 1f;
     float timer;
@@ -22,6 +23,7 @@ public class DebugInfo : MonoBehaviour
     {
         camera = Camera.main;
         cameraController = FindObjectOfType<CameraController>();
+        gameLogic = FindObjectOfType<GameLogic>();
     }
 
     // Update is called once per frame
@@ -30,7 +32,7 @@ public class DebugInfo : MonoBehaviour
         mousePosition.text = cameraController.GetMousePosInWorld().ToString();
         numberOfHouses.text = GetNumberOfHouses().ToString();
         numberOfRoads.text = GetNumberOfRoads().ToString();
-        gridStateText.text = cameraController.GetGridState().ToString();
+        buildModeText.text = gameLogic.IsBuildModeEnabled().ToString();
         framesPerSecondText.text = GetFramesPerSecond().ToString();
     }
     int GetNumberOfHouses()

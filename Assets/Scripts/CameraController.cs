@@ -12,6 +12,7 @@ public class CameraController : MonoBehaviour
     bool debugPanelActive = true;
     bool gridEnabled = true;
 
+    GameLogic gameLogic;
     new Camera camera;
     Vector3 cameraOffset;
     Vector2 mousePos;
@@ -24,6 +25,7 @@ public class CameraController : MonoBehaviour
         camera.transform.position = transform.position;
         cameraOffset = new Vector3(0, 0, -1);
         debugInfo = FindObjectOfType<DebugInfo>();
+        gameLogic = FindObjectOfType<GameLogic>();
     }
 
     // Update is called once per frame
@@ -33,6 +35,7 @@ public class CameraController : MonoBehaviour
         GetTileName();
         SetDebugInfoState();
         ToggleGrid();
+        gameLogic.ToggleBuildMode();
 
         //FaceMouse();
     }
@@ -113,30 +116,34 @@ public class CameraController : MonoBehaviour
 
     public void ToggleGrid()
     {
-        if (Input.GetKeyDown("g"))
+        if (gameLogic.IsBuildModeEnabled())
         {
-            gridEnabled = !gridEnabled;
-            if (gridEnabled == false)
+            gridEnabled = true;
+        } else
+        {
+            gridEnabled = false;
+        }
+
+        if (gridEnabled == false)
+        {
+            GameObject[] blocks = GameObject.FindGameObjectsWithTag("GridBlock");
+            foreach (GameObject g in blocks)
             {
-                GameObject[] blocks = GameObject.FindGameObjectsWithTag("GridBlock");
-                foreach (GameObject g in blocks)
-                {
-                    g.gameObject.GetComponent<SpriteRenderer>().material.color = new Color32(255, 255, 255, 0);
-                }
+                g.gameObject.GetComponent<SpriteRenderer>().material.color = new Color32(255, 255, 255, 0);
             }
-            else
+        }
+        else
+        {
+            GameObject[] blocks = GameObject.FindGameObjectsWithTag("GridBlock");
+            foreach (GameObject g in blocks)
             {
-                GameObject[] blocks = GameObject.FindGameObjectsWithTag("GridBlock");
-                foreach (GameObject g in blocks)
+                if (g.transform.GetComponent<GridTile>().isHoveredOn == false)
                 {
                     g.gameObject.GetComponent<SpriteRenderer>().material.color = new Color32(255, 255, 255, 255);
                 }
+                    
             }
         }
-    }
-    public bool GetGridState()
-    {
-        return gridEnabled;
     }
 
     /*

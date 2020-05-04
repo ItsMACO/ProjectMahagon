@@ -6,11 +6,15 @@ using UnityEngine.EventSystems;
 public class BuildingLogic : MonoBehaviour
 {
     CameraController cameraController;
+    GameLogic gameLogic;
+
     [SerializeField] GameObject housePrefab;
+
     // Start is called before the first frame update
     void Start()
     {
         cameraController = FindObjectOfType<CameraController>();
+        gameLogic = FindObjectOfType<GameLogic>();
     }
 
     // Update is called once per frame
@@ -20,7 +24,7 @@ public class BuildingLogic : MonoBehaviour
     }
     void BuildBuilding()
     {
-        if (Input.GetButton("Fire1"))
+        if (Input.GetButton("Fire1") && gameLogic.IsBuildModeEnabled())
         {
             if (EventSystem.current.IsPointerOverGameObject())
             {

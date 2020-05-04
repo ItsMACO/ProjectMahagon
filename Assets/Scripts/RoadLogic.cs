@@ -7,12 +7,15 @@ using UnityEngine.EventSystems;
 public class RoadLogic : MonoBehaviour
 {
     CameraController cameraController;
+    GameLogic gameLogic;
+
     GridTile gridTile;
     [SerializeField] GameObject[] roadPrefab;
     // Start is called before the first frame update
     void Start()
     {
         cameraController = FindObjectOfType<CameraController>();
+        gameLogic = FindObjectOfType<GameLogic>();
     }
 
     // Update is called once per frame
@@ -23,7 +26,7 @@ public class RoadLogic : MonoBehaviour
 
     void BuildRoad()
     {
-        if(Input.GetButton("Fire3"))
+        if(Input.GetButton("Fire3") && gameLogic.IsBuildModeEnabled())
         {
             if (EventSystem.current.IsPointerOverGameObject())
             {
